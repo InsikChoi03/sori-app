@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SORI — Korean Music, Decoded</title>
+<meta name="description" content="Korean traditional music (gugak), decoded for international fans: genre guides, line-by-line pansori lyrics, and real Seoul shows you can actually book.">
+<meta name="theme-color" content="#AE3A33">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23AE3A33%22/><text x=%2250%22 y=%2266%22 font-size=%2246%22 text-anchor=%22middle%22 fill=%22%23FBF7EC%22 font-family=%22serif%22>소리</text></svg>">
+
+<style>
+/* ============ Design tokens ============ */
+:root {
+  --bg: #EDEBE1;
+  --bg-outer: #E2DFD2;
+  --panel: #F6F4EC;
+  --card: #FBFAF4;
+  --ink: #21232C;
+  --muted: #6C6E79;
+  --faint: #93949E;
+  --line: #D9D6C8;
+  --accent: #AE3A33;          /* nakgwan seal red */
+  --accent-soft: #AE3A3318;
+  --on-accent: #FBF7EC;
+  --gold: #96701F;
+  --teal: #3D6F6D;
+  --good: #3D6F52;
+
+  --c-pansori: #B03A34;
+  --c-haegeum: #3E6C9E;
+  --c-gayageum: #96701F;
+  --c-minyo: #4E8560;
+  --c-samulnori: #7A4E9E;
+  --c-daegeum: #3D6F6D;
+
+  --serif: Georgia, "Nanum Myeongjo", "AppleMyungjo", Batang, "Noto Serif KR", serif;
+  --sans: "Segoe UI", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", Roboto, sans-serif;
+
+  --r: 14px;
+  --shadow: 0 1px 2px rgba(20,18,10,.06), 0 8px 28px rgba(20,18,10,.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161D;
+    --bg-outer: #0E1016;
+    --panel: #1B1E27;
+    --card: #21242F;
+    --ink: #ECE9DD;
+    --muted: #A3A5B0;
+    --faint: #7C7E8A;
+    --line: #2E3140;
+    --accent: #D25349;
+    --accent-soft: #D2534926;
+    --on-accent: #FBF7EC;
+    --gold: #D9A441;
+    --teal: #63A5A2;
+    --good: #6FB08A;
+    --c-pansori: #D25349;
+    --c-haegeum: #6C9CD1;
+    --c-gayageum: #D9A441;
+    --c-minyo: #74B58B;
+    --c-samulnori: #A97FD1;
+    --c-daegeum: #63A5A2;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14161D; --bg-outer: #0E1016; --panel: #1B1E27; --card: #21242F;
+  --ink: #ECE9DD; --muted: #A3A5B0; --faint: #7C7E8A; --line: #2E3140;
+  --accent: #D25349; --accent-soft: #D2534926; --on-accent: #FBF7EC;
+  --gold: #D9A441; --teal: #63A5A2; --good: #6FB08A;
+  --c-pansori: #D25349; --c-haegeum: #6C9CD1; --c-gayageum: #D9A441;
+  --c-minyo: #74B58B; --c-samulnori: #A97FD1; --c-daegeum: #63A5A2;
+  --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.35);
+}
+:root[data-theme="light"] {
+  --bg: #EDEBE1; --bg-outer: #E2DFD2; --panel: #F6F4EC; --card: #FBFAF4;
+  --ink: #21232C; --muted: #6C6E79; --faint: #93949E; --line: #D9D6C8;
+  --accent: #AE3A33; --accent-soft: #AE3A3318; --on-accent: #FBF7EC;
+  --gold: #96701F; --teal: #3D6F6D; --good: #3D6F52;
+  --c-pansori: #B03A34; --c-haegeum: #3E6C9E; --c-gayageum: #96701F;
+  --c-minyo: #4E8560; --c-samulnori: #7A4E9E; --c-daegeum: #3D6F6D;
+  --shadow: 0 1px 2px rgba(20,18,10,.06), 0 8px 28px rgba(20,18,10,.07);
+}
+
+/* ============ Base ============ */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg-outer);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+img { max-width: 100%; }
+
+/* ============ Shell ============ */
+.shell {
+  max-width: 448px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  background: var(--bg);
+  position: relative;
+  padding-bottom: 96px;
+  overflow-x: clip;
+}
+@media (min-width: 560px) {
+  .shell {
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+}
+
+/* obangsaek brand strip */
+.obang {
+  height: 4px;
+  background: linear-gradient(90deg,
+    #2F5F8F 0 20%, #B03A34 20% 40%, #C9962E 40% 60%,
+    #E8E2D2 60% 80%, #23252E 80% 100%);
+}
+
+/* ============ Header ============ */
+header.app {
+  position: sticky; top: 0; z-index: 30;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.app-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 18px;
+}
+.seal {
+  width: 34px; height: 34px; flex: none;
+  background: var(--accent); color: var(--on-accent);
+  border-radius: 8px;
+  display: grid; place-items: center;
+  font-family: var(--serif); font-size: 13px; font-weight: 700;
+  letter-spacing: .05em;
+}
+.brand { display: flex; flex-direction: column; line-height: 1.1; }
+.brand b { font-family: var(--serif); font-size: 17px; letter-spacing: .12em; }
+.brand span { font-size: 10.5px; color: var(--muted); letter-spacing: .04em; }
+.beta {
+  font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid currentColor;
+  padding: 1px 6px; border-radius: 99px; margin-left: 2px;
+}
+.user-chip {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--panel); border: 1px solid var(--line);
+  padding: 4px 10px 4px 4px; border-radius: 99px;
+  font-size: 12px; color: var(--muted);
+}
+.user-chip .avatar {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--teal); color: var(--on-accent);
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 600;
+}
+
+/* ============ Sections / panels ============ */
+main { padding: 0 18px; }
+section[data-panel] { display: none; padding-top: 18px; }
+section[data-panel].active { display: block; }
+
+.eyebrow {
+  font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--faint); margin: 26px 0 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.eyebrow::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+.eyebrow:first-child { margin-top: 4px; }
+
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 16px;
+}
+.card + .card { margin-top: 10px; }
+
+/* ============ Home ============ */
+.greet h1 { font-family: var(--serif); font-size: 26px; font-weight: 600; }
+.greet p { color: var(--muted); font-size: 13px; margin-top: 3px; }
+
+.temp-card { position: relative; overflow: hidden; }
+.temp-card .watermark {
+  position: absolute; right: -14px; top: -34px;
+  font-family: var(--serif); font-size: 110px; line-height: 1;
+  color: var(--ink); opacity: .05; pointer-events: none;
+  user-select: none;
+}
+.temp-top { display: flex; align-items: baseline; gap: 10px; }
+.temp-value {
+  font-family: var(--serif); font-size: 40px; line-height: 1;
+  color: var(--accent); font-variant-numeric: tabular-nums;
+}
+.temp-label { font-size: 12px; color: var(--muted); }
+.temp-bar {
+  margin-top: 12px; height: 8px; border-radius: 99px;
+  background: var(--panel); border: 1px solid var(--line);
+  overflow: hidden;
+}
+.temp-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--accent));
+  border-radius: 99px;
+  transition: width .9s cubic-bezier(.2,.7,.2,1);
+}
+.temp-meta {
+  display: flex; justify-content: space-between;
+  font-size: 11.5px; color: var(--muted); margin-top: 8px;
+}
+.temp-meta b { color: var(--ink); font-weight: 600; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  border: 1px solid var(--line); background: var(--card);
+  border-radius: 99px; padding: 6px 13px;
+  font-size: 12.5px; color: var(--muted);
+  transition: all .15s ease;
+}
+.chip[aria-pressed="true"] {
+  background: var(--accent); border-color: var(--accent);
+  color: var(--on-accent);
+}
+.chip:hover { border-color: var(--accent); }
+
+.pick-card { border-left: 3px solid var(--accent); }
+.match-badge {
+  display: inline-block; font-size: 10.5px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-soft);
+  padding: 3px 8px; border-radius: 6px;
+  font-variant-numeric: tabular-nums;
+}
+.match-badge.neutral { color: var(--muted); background: var(--panel); }
+.pick-card h3, .show-card h3 { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-top: 8px; }
+.pick-card .venue, .show-card .venue { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.pick-card .blurb { font-size: 13.5px; margin-top: 10px; color: var(--ink); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent); color: var(--on-accent);
+  border-radius: 10px; padding: 9px 16px;
+  font-size: 13.5px; font-weight: 600;
+  transition: filter .15s ease;
+}
+.btn:hover { filter: brightness(1.08); text-decoration: none; }
+.btn.ghost {
+  background: transparent; color: var(--accent);
+  border: 1px solid var(--accent);
+}
+.btn.small { padding: 6px 12px; font-size: 12.5px; border-radius: 8px; }
+.btn-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+
+.tease-kr { font-family: var(--serif); font-size: 17px; margin-top: 8px; }
+.tease-en { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 4px; }
+
+/* ============ Explore ============ */
+.genre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.genre-card {
+  text-align: left; background: var(--card);
+  border: 1px solid var(--line); border-radius: var(--r);
+  padding: 14px; position: relative; overflow: hidden;
+  transition: transform .15s ease, border-color .15s ease;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.genre-card:hover { transform: translateY(-2px); border-color: var(--gc); }
+.genre-card .big {
+  font-family: var(--serif); font-size: 46px; line-height: 1;
+  color: var(--gc); margin-bottom: 8px;
+}
+.genre-card b { font-size: 15px; }
+.genre-card small { color: var(--muted); font-size: 11.5px; line-height: 1.4; }
+.genre-card::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 3px;
+  background: var(--gc); opacity: .85;
+}
+
+/* ============ Lyrics ============ */
+.piece-head { border-left: 3px solid var(--gold); }
+.piece-head .ko { font-family: var(--serif); font-size: 24px; }
+.piece-head .sub { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.piece-head .context { font-size: 13.5px; margin-top: 12px; color: var(--ink); }
+.gloss-row { display: flex; gap: 8px; overflow-x: auto; padding: 12px 0 4px; scrollbar-width: thin; }
+.gloss-chip {
+  flex: none; border: 1px dashed var(--gold); color: var(--gold);
+  border-radius: 99px; padding: 5px 12px; font-size: 12px;
+}
+.gloss-chip:hover { background: var(--accent-soft); }
+
+.line-item {
+  width: 100%; text-align: left; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 14px 16px;
+  margin-top: 10px; display: block;
+  transition: border-color .15s ease;
+}
+.line-item:hover { border-color: var(--accent); }
+.line-item .num {
+  font-size: 10px; letter-spacing: .12em; color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+.line-item .kr { font-family: var(--serif); font-size: 17.5px; line-height: 1.6; margin-top: 4px; }
+.line-item .rom { font-size: 11.5px; color: var(--faint); font-style: italic; margin-top: 4px; }
+.line-item .en { font-size: 13.5px; color: var(--muted); margin-top: 6px; }
+.line-item .hint {
+  font-size: 11px; color: var(--accent); margin-top: 8px;
+  display: flex; align-items: center; gap: 4px;
+}
+.line-item[aria-expanded="true"] { border-color: var(--accent); }
+.line-item .commentary {
+  display: none;
+  margin-top: 12px; padding: 12px 14px;
+  background: var(--accent-soft); border-radius: 10px;
+  font-size: 13px; line-height: 1.6; color: var(--ink);
+}
+.line-item[aria-expanded="true"] .commentary { display: block; }
+
+.pilot-note {
+  margin-top: 18px; border: 1.5px dashed var(--line);
+  border-radius: var(--r); padding: 16px;
+  font-size: 13px; color: var(--muted);
+}
+.pilot-note b { color: var(--ink); }
+.vote-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+/* ============ Shows ============ */
+.show-card .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.tag {
+  font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 6px;
+  border: 1px solid var(--tc, var(--line)); color: var(--tc, var(--muted));
+}
+.show-card .blurb { font-size: 13.5px; margin-top: 10px; }
+.fact-grid {
+  display: grid; grid-template-columns: 64px 1fr; gap: 4px 10px;
+  margin-top: 12px; font-size: 12.5px;
+}
+.fact-grid dt {
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--faint); padding-top: 2px;
+}
+.fact-grid dd { margin: 0; color: var(--muted); }
+.fact-grid dd b { color: var(--ink); font-weight: 600; }
+
+.venue-item { border-top: 1px solid var(--line); padding: 12px 0; }
+.venue-item:first-of-type { border-top: none; padding-top: 4px; }
+.venue-item summary {
+  cursor: pointer; font-weight: 600; font-size: 14px;
+  list-style: none; display: flex; align-items: baseline; gap: 8px;
+}
+.venue-item summary::-webkit-details-marker { display: none; }
+.venue-item summary small { color: var(--faint); font-weight: 400; font-size: 11.5px; }
+.venue-item summary::after { content: "+"; margin-left: auto; color: var(--faint); font-size: 16px; }
+.venue-item[open] summary::after { content: "–"; }
+.venue-item .v-body { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.venue-item .v-tip { font-size: 12.5px; margin-top: 8px; padding: 10px 12px; background: var(--panel); border-radius: 10px; }
+.venue-item .v-tip b { color: var(--teal); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 3px; }
+
+/* ============ Learn ============ */
+.class-card b.prog { font-size: 15px; display: block; }
+.class-card .prov { color: var(--teal); font-size: 12px; margin-top: 2px; }
+.class-card .fmt { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.class-card .aud { font-size: 12px; color: var(--faint); margin-top: 6px; font-style: italic; }
+.match-form { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.match-form select {
+  background: var(--panel); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 10px;
+  padding: 9px 12px; font: inherit; font-size: 13.5px;
+}
+
+/* ============ Bottom nav ============ */
+nav.tabbar {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: min(448px, 100%); z-index: 35;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  padding: 6px 4px calc(8px + env(safe-area-inset-bottom));
+}
+.tab-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 6px 2px; color: var(--faint); border-radius: 10px;
+  font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase;
+}
+.tab-btn svg { width: 21px; height: 21px; }
+.tab-btn[aria-current="true"] { color: var(--accent); }
+.tab-btn[aria-current="true"]::before {
+  content: ""; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--accent); position: absolute; margin-top: -7px;
+}
+
+/* ============ Sheets & popups ============ */
+.sheet-backdrop {
+  position: fixed; inset: 0; z-index: 40;
+  background: rgba(10, 10, 14, .5);
+  display: none;
+}
+.sheet-backdrop.open { display: block; }
+.sheet {
+  position: fixed; z-index: 45;
+  left: 50%; transform: translateX(-50%);
+  width: min(448px, 100%);
+  bottom: 0; max-height: 88dvh; overflow-y: auto;
+  background: var(--bg); border-radius: 18px 18px 0 0;
+  border: 1px solid var(--line); border-bottom: none;
+  padding: 10px 20px 32px;
+  display: none;
+}
+.sheet.open { display: block; animation: rise .28s cubic-bezier(.2,.8,.25,1); }
+@keyframes rise { from { transform: translate(-50%, 40px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+.sheet .grab { width: 40px; height: 4px; border-radius: 99px; background: var(--line); margin: 4px auto 14px; }
+.sheet-close {
+  position: sticky; top: 6px; float: right;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--panel); border: 1px solid var(--line);
+  display: grid; place-items: center; font-size: 15px; color: var(--muted);
+}
+.g-big { font-family: var(--serif); font-size: 56px; line-height: 1; color: var(--gc); }
+.g-name { font-family: var(--serif); font-size: 26px; margin-top: 8px; }
+.g-tag { color: var(--muted); font-size: 14px; margin-top: 2px; font-style: italic; }
+.g-desc { margin-top: 14px; font-size: 14px; }
+.callout {
+  margin-top: 12px; padding: 12px 14px; border-radius: 10px;
+  background: var(--panel); border-left: 3px solid var(--gc, var(--accent));
+  font-size: 13px;
+}
+.callout b {
+  display: block; font-size: 10.5px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gc, var(--accent)); margin-bottom: 4px;
+}
+.rel-list { margin: 8px 0 0; padding: 0; list-style: none; font-size: 13.5px; }
+.rel-list li { padding: 7px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; }
+.rel-list li:last-child { border-bottom: none; }
+.rel-list .rl-v { color: var(--faint); font-size: 12px; flex: none; }
+
+.term-kr { font-family: var(--serif); font-size: 30px; }
+.term-rom { color: var(--gold); font-size: 13px; letter-spacing: .06em; margin-top: 2px; }
+.term-def { margin-top: 12px; font-size: 14px; }
+
+/* ============ Toast ============ */
+.toast {
+  position: fixed; z-index: 60; left: 50%; bottom: 96px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: var(--bg);
+  padding: 10px 18px; border-radius: 99px;
+  font-size: 13px; max-width: 88vw; text-align: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ============ Splash ============ */
+.splash {
+  position: fixed; top: 0; bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: min(448px, 100%);
+  z-index: 50;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  padding: 0 28px 40px;
+  overflow-y: auto;
+}
+.splash.gone { display: none; }
+.splash-inner { margin: auto 0; }
+.splash .seal { width: 56px; height: 56px; font-size: 20px; border-radius: 13px; }
+.splash h1 {
+  font-family: var(--serif); font-size: 42px; font-weight: 600;
+  letter-spacing: .1em; margin-top: 20px;
+}
+.splash .strap { color: var(--muted); font-size: 15px; margin-top: 6px; }
+.splash ul { margin: 26px 0 0; padding: 0; list-style: none; }
+.splash li {
+  padding: 10px 0; font-size: 14px; color: var(--muted);
+  border-top: 1px solid var(--line);
+  display: flex; gap: 12px; align-items: baseline;
+}
+.splash li:last-child { border-bottom: 1px solid var(--line); }
+.splash li i {
+  font-style: normal; font-family: var(--serif);
+  color: var(--accent); flex: none; width: 20px;
+}
+.splash .actions { display: flex; flex-direction: column; gap: 10px; }
+.splash .btn { justify-content: center; padding: 13px; font-size: 15px; border-radius: 12px; }
+.splash .fine { text-align: center; font-size: 11px; color: var(--faint); margin-top: 14px; }
+
+.foot {
+  margin: 34px 0 8px; padding-top: 14px; border-top: 1px solid var(--line);
+  font-size: 11px; color: var(--faint); line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- Splash / mock sign-in -->
+  <div class="splash" id="splash">
+    <div class="splash-inner">
+      <div class="seal">소리</div>
+      <h1>SORI</h1>
+      <p class="strap">Korean traditional music, decoded for you.</p>
+      <ul>
+        <li><i>探</i>Meet pansori, haegeum &amp; five more sounds — explained like a friend would</li>
+        <li><i>詞</i>Tap any lyric line for the story hiding inside it</li>
+        <li><i>票</i>Real Seoul shows with English subtitles — and exactly how to book</li>
+      </ul>
+    </div>
+    <div class="actions">
+      <button class="btn" id="guestBtn">Continue as guest</button>
+      <button class="btn ghost" id="emailBtn">Sign in with email</button>
+    </div>
+    <p class="fine">Prototype v0.1 · No account needed yet</p>
+  </div>
+
+  <div class="obang" aria-hidden="true"></div>
+  <header class="app">
+    <div class="app-row">
+      <div class="seal" aria-hidden="true">소리</div>
+      <div class="brand"><b>SORI</b><span>Korean music, decoded</span></div>
+      <span class="beta">pilot</span>
+      <div class="user-chip"><span class="avatar">M</span>Mina · Lv.2</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HOME ============ -->
+    <section data-panel="home" class="active">
+      <div class="greet">
+        <h1>Good evening, Mina</h1>
+        <p>Sunday, July 20 · Seoul</p>
+      </div>
+
+      <p class="eyebrow">Your gugak temperature</p>
+      <div class="card temp-card">
+        <span class="watermark" aria-hidden="true">凰</span>
+        <div class="temp-top">
+          <span class="temp-value" id="tempVal">36.5°</span>
+          <span class="temp-label">warming up nicely</span>
+        </div>
+        <div class="temp-bar"><div class="temp-fill" id="tempFill"></div></div>
+        <div class="temp-meta">
+          <span><b>2 shows</b> attended</span>
+          <span>Lv.2 <b>Chuimsae Rookie</b> · 3 to Lv.3</span>
+        </div>
+      </div>
+
+      <p class="eyebrow">What pulls you in?</p>
+      <div class="chips" id="tasteChips" role="group" aria-label="Pick your tastes"></div>
+
+      <p class="eyebrow">Tonight&rsquo;s pick for you</p>
+      <div class="card pick-card" id="pickCard"></div>
+
+      <p class="eyebrow">Decode a masterpiece</p>
+      <div class="card">
+        <span class="match-badge neutral">Lyrics pilot</span>
+        <h3 style="font-family:var(--serif);font-size:18px;margin-top:8px;">Simcheongga — &ldquo;Drifting in Mid-River&rdquo;</h3>
+        <p class="tease-kr">범피중류 둥덩실 떠나간다&hellip;</p>
+        <p class="tease-en">Adrift in mid-river the boat rocks buoyantly — and away it sails.</p>
+        <div class="btn-row">
+          <button class="btn small" data-goto="lyrics">Read line by line</button>
+        </div>
+      </div>
+
+      <p class="foot">SORI prototype v0.1 · Shows &amp; programs verified July 2026 — always check the booking page for final schedules. Made for the gugak-curious.</p>
+    </section>
+
+    <!-- ============ EXPLORE ============ -->
+    <section data-panel="explore">
+      <div class="greet">
+        <h1>Six sounds of Korea</h1>
+        <p>Tap one — no music degree required.</p>
+      </div>
+      <p class="eyebrow">Genres &amp; instruments</p>
+      <div class="genre-grid" id="genreGrid"></div>
+    </section>
+
+    <!-- ============ LYRICS ============ -->
+    <section data-panel="lyrics">
+      <div class="greet">
+        <h1>Inside the lyrics</h1>
+        <p>Tap any line to unlock what Koreans hear in it.</p>
+      </div>
+
+      <p class="eyebrow">Now decoding</p>
+      <div class="card piece-head">
+        <p class="ko">심청가 <span style="font-size:14px;color:var(--muted);">Simcheongga</span></p>
+        <p class="sub" id="passageName"></p>
+        <p class="context" id="passageContext"></p>
+      </div>
+
+      <p class="eyebrow">Tap-to-learn glossary</p>
+      <div class="gloss-row" id="glossRow"></div>
+
+      <p class="eyebrow">The passage · 8 lines</p>
+      <div id="lineList"></div>
+
+      <div class="pilot-note">
+        <b>This is our pilot passage — one scene, decoded deep.</b><br>
+        We&rsquo;d rather explain one masterpiece properly than a hundred songs badly.
+        What should we decode next?
+        <div class="vote-row">
+          <button class="chip" data-vote="Chunhyangga — the love duet">Chunhyangga love duet</button>
+          <button class="chip" data-vote="Arirang — regional versions">Arirang variations</button>
+          <button class="chip" data-vote="K-drama OST gugak moments">K-drama OST moments</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SHOWS ============ -->
+    <section data-panel="shows">
+      <div class="greet">
+        <h1>See it live</h1>
+        <p id="showsSub">Ranked for your picks — every show is foreigner-friendly.</p>
+      </div>
+      <p class="eyebrow">Recommended for you</p>
+      <div id="showList"></div>
+
+      <p class="eyebrow">First-timer venue cheat sheet</p>
+      <div class="card" id="venueList"></div>
+    </section>
+
+    <!-- ============ LEARN ============ -->
+    <section data-panel="learn">
+      <div class="greet">
+        <h1>From listening to playing</h1>
+        <p>Real programs that welcome non-Koreans.</p>
+      </div>
+      <p class="eyebrow">Classes &amp; workshops</p>
+      <div id="classList"></div>
+
+      <p class="eyebrow">Ongoing lessons</p>
+      <div class="card">
+        <b style="font-size:15px;">Want a teacher, not a one-off?</b>
+        <p style="font-size:13px;color:var(--muted);margin-top:6px;">
+          Tell us your instrument and we&rsquo;ll introduce you to a vetted teacher or
+          cultural-center program that takes English-speaking students.
+        </p>
+        <div class="match-form">
+          <select id="instSelect" aria-label="Choose an instrument">
+            <option>Haegeum — the two-string fiddle</option>
+            <option>Gayageum — the twelve-string zither</option>
+            <option>Pansori — voice</option>
+            <option>Janggu — hourglass drum</option>
+            <option>Daegeum — bamboo flute</option>
+            <option>Not sure yet — help me pick</option>
+          </select>
+          <button class="btn" id="matchBtn">Request an introduction</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom navigation -->
+  <nav class="tabbar" aria-label="Main">
+    <button class="tab-btn" data-tab="home" aria-current="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+      Home
+    </button>
+    <button class="tab-btn" data-tab="explore">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 9.2l-1.8 4.6-3.8 1 1.8-4.6z"/></svg>
+      Explore
+    </button>
+    <button class="tab-btn" data-tab="lyrics">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 10h16"/><path d="M4 15h9"/><path d="M17 15v5"/><circle cx="15.5" cy="20" r="1.5"/></svg>
+      Lyrics
+    </button>
+    <button class="tab-btn" data-tab="shows">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="10" rx="2"/><path d="M15 7v10" stroke-dasharray="2.4 2.4"/></svg>
+      Shows
+    </button>
+    <button class="tab-btn" data-tab="learn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4L2.5 9 12 14l9.5-5z"/><path d="M6.5 11.5V16c0 1.8 11 1.8 11 0v-4.5"/></svg>
+      Learn
+    </button>
+  </nav>
+
+  <!-- Sheets -->
+  <div class="sheet-backdrop" id="backdrop"></div>
+  <div class="sheet" id="genreSheet" role="dialog" aria-modal="true" aria-label="Genre detail"></div>
+  <div class="sheet" id="termSheet" role="dialog" aria-modal="true" aria-label="Glossary term"></div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script>
+/* ================= Data (verified July 2026) ================= */
+const GENRES = [
+  { id: "pansori", ch: "판", name: "Pansori", koreanName: "판소리",
+    tagline: "One voice, one drum, an entire epic",
+    description: "Picture one singer, one drummer, and a story that can run for hours — no set, no costumes, just a voice pushed to its raspy limits and a folding fan for punctuation. That's pansori: Korea's epic musical storytelling, where a single performer voices every character in tales of love, loyalty, and talking rabbits. The drummer eggs the singer on with shouts of \"eolssu!\" — and the audience is expected to shout back too. If you've seen Seoul's viral \"Feel the Rhythm of Korea\" videos, the band Leenalchi built those hypnotic grooves straight out of the pansori classic Sugungga. UNESCO listed pansori as intangible heritage in 2003.",
+    listenFor: "Listen for the rough, gravelly texture of the voice — that huskiness isn't a flaw, it's the prized result of years of brutal training.",
+    funFact: "Aspiring singers traditionally trained by out-singing waterfalls for a hundred days, deliberately wrecking their voices so they would heal back rougher, stronger, and ready for hours-long performances.",
+    tags: ["pansori"] },
+  { id: "haegeum", ch: "해", name: "Haegeum", koreanName: "해금",
+    tagline: "Two strings that sound almost human",
+    description: "That thin, reedy melody tugging at your heart in a K-drama's saddest scene? Odds are it's the haegeum. This small two-stringed fiddle sits upright on the player's knee, and its strings never touch a fingerboard — the player squeezes them in mid-air, bending pitches the way a singer slides between notes. That's why it sounds so uncannily human: it can sob, tease, and sigh, sometimes within one phrase. Suga of BTS named his 2023 Agust D track \"Haegeum\" after it — a deliberate pun, since haegeum also means \"lifting a ban\" in Korean, and the song plays on both.",
+    listenFor: "Listen for how the haegeum almost never hits a note straight — it slides, wobbles, and bends its way in, exactly like a voice.",
+    funFact: "The haegeum is built from all eight materials of the classical Korean instrument system — metal, stone, silk, bamboo, gourd, clay, leather, and wood — making it practically a whole orchestra in one small fiddle.",
+    tags: ["haegeum", "court"] },
+  { id: "gayageum", ch: "가", name: "Gayageum", koreanName: "가야금",
+    tagline: "Twelve strings from a vanished kingdom",
+    description: "The gayageum is the instrument you picture when you picture Korea: a long paulownia-wood zither laid across the lap, its twelve silk strings plucked with bare fingers. Unlike a harp's clean pluck, the left hand keeps working after each note — pressing, shaking, and bending the string so every tone wavers like a voice. If you caught Jisoo opening BLACKPINK's \"Pink Venom\" on a big black zither, that was the gayageum's deeper-voiced cousin, the geomungo; the gayageum is the softer, silkier sibling. Modern versions carry 18 or 25 strings and cover everything from serene court music to fiery sanjo solos.",
+    listenFor: "Listen for the note after the note — the way a plucked string trembles and blooms under the player's left hand before it fades.",
+    funFact: "It's named for the kingdom of Gaya, which collapsed in the sixth century — the instrument only survived because the court musician Ureuk defected to rival Silla and took it, and his music, with him.",
+    tags: ["gayageum", "court"] },
+  { id: "minyo", ch: "민", name: "Minyo", koreanName: "민요",
+    tagline: "The songs Koreans carry in their bones",
+    description: "Minyo are Korea's folk songs — the tunes farmers, fishermen, and grandmothers sang while working, drinking, mourning, and celebrating. Every region has its own accent: songs from the Seoul area bounce along bright and playful, while southern Jindo songs run deep, husky, and gut-wrenching. Most work on call-and-response — one voice throws out a line, everyone in earshot answers — so joining in isn't rude, it's the point. And you already know one: \"Arirang,\" the melody that turns up everywhere from Olympic ceremonies to K-drama soundtracks, is minyo. Learn its refrain and you've unlocked a shortcut into any Korean gathering, karaoke room included.",
+    listenFor: "Listen for the call-and-response — a lead singer improvising verses while everyone answers with the same refrain, plus the little vocal shakes that make even happy songs ache a bit.",
+    funFact: "An estimated 3,600 variations of \"Arirang\" exist, and South and North Korea each inscribed it separately on UNESCO's intangible heritage list — in 2012 and 2014.",
+    tags: ["minyo"] },
+  { id: "samulnori", ch: "사", name: "Samulnori", koreanName: "사물놀이",
+    tagline: "Thunder, wind, rain, and clouds — onstage",
+    description: "Samulnori is four percussionists and zero chill: a small gong (kkwaenggwari) slicing like lightning, a large gong (jing) rolling like wind, an hourglass drum (janggu) pattering like rain, and a barrel drum (buk) rumbling like clouds — the four instruments literally represent weather. It grew out of pungmul, the outdoor farmers' band music that powered village festivals for centuries, compressed into a seated stage act that starts slow and accelerates until the room feels like it's levitating. If K-pop's percussion-heavy dance breaks give you chills, this is where that energy comes from — Korea's original beat drop.",
+    listenFor: "Listen for the slow-burn acceleration — pieces start at a heartbeat's pace and tighten, cycle by cycle, into a full-sprint climax that seems physically impossible.",
+    funFact: "Despite its ancient sound, samulnori was invented in 1978, when Kim Duk-soo and three fellow musicians reworked farmers' band music for a tiny Seoul theater stage — the genre is younger than disco.",
+    tags: ["samulnori"] },
+  { id: "daegeum", ch: "대", name: "Daegeum", koreanName: "대금",
+    tagline: "Bamboo breath with a built-in growl",
+    description: "The daegeum is a bamboo flute nearly the length of your arm, played sideways, with a secret weapon: a patch of reed membrane stretched over an extra hole that buzzes when the player blows harder. Soft passages sound like moonlight on water; push the air and the tone rips into a raspy, electric snarl no Western flute can make. It's that breathy, haunted sound drifting through countless historical K-drama soundtracks — and in the traditional court orchestra, the daegeum is the boss: every other instrument tunes to its pitch. One piece of bamboo, two personalities — serene meditation and raw, buzzing fire.",
+    listenFor: "Listen for the buzz — when the player leans into a loud note, the pure flute tone suddenly frays into a thrilling, reedy rasp from the vibrating membrane.",
+    funFact: "Korea's oldest legend about the instrument, the Manpasikjeok or \"flute that calms ten thousand waves,\" tells of a magical daegeum that stopped storms and enemy invasions when played — the Silla kingdom kept it as a national treasure.",
+    tags: ["court", "fusion"] }
+];
+
+const LYRICS = {
+  passageName: "Beompi jungnyu (범피중류, 泛彼中流) — “Drifting in Mid-River”",
+  context: "Sim Cheong has sold herself to Nanjing merchants for 300 sacks of rice — an offering so her blind father may regain his sight. Their ship now carries her across the open sea toward Indangsu, where she will be cast into the waves as a sacrifice. Sung in the slowest rhythmic cycle, jinyangjo, in a stately ujo voice, the passage overlays majestic Chinese river scenery and classical allusions onto her private grief — grandeur and mourning fused. It was even sung, by master Kim So-hee and colleagues riding a boat, at the opening ceremony of the 1988 Seoul Olympics.",
+  lines: [
+    { kr: "범피중류(泛彼中流) 둥덩실 떠나간다.",
+      rom: "Beompi jungnyu dungdeongsil tteonaganda.",
+      en: "Adrift in mid-river the boat rocks buoyantly — dung-deong-sil — and away it sails.",
+      commentary: "The Sino-Korean opening “beompi jungnyu” (“floating there in midstream”) borrows the diction of the Chinese Classic of Poetry, instantly elevating the scene to epic register. The onomatopoeia “dungdeongsil” imitates the buoyant sway of the hull lifting on the swell. The singer spreads this first phrase over a full, slow jinyangjo cycle, so the melody itself seems to rock like the boat." },
+    { kr: "망망헌 창해(滄海)이며 탕탕헌 물결이라.",
+      rom: "Mangmang-heon changhae-imyeo tangtang-heon mulgyeol-ira.",
+      en: "Boundless lies the blue sea; vast and surging roll the waves.",
+      commentary: "A parallel couplet built on the doubled Sino-Korean adjectives “mangmang” (boundless) and “tangtang” (vast, sweeping) — a rhetorical symmetry prized in classical Chinese verse. The immensity of the seascape dwarfs the lone girl on deck, which is the passage's emotional engine: the grander the world, the smaller and more doomed she feels." },
+    { kr: "백빈주(白蘋洲) 갈매기는 홍요안(紅蓼岸)으로 날아들고,",
+      rom: "Baekbinju galmaegineun Hongyoan-euro naradeulgo,",
+      en: "From the islet of white duckweed the gulls fly in toward the bank of red smartweed,",
+      commentary: "Baekbinju (“white-duckweed islet”) and Hongyoan (“red-smartweed bank”) are stock landscapes from Chinese poetry of rivers and exile, not real Korean places. The white-against-red pairing paints the scene like an ink-and-color scroll. Korean audiences hear these names as signals that Sim Cheong is sailing into the storied, melancholy waterways of classical literature." },
+    { kr: "삼강(三江)의 기러기는 한수(漢水)로 돌아든다.",
+      rom: "Samgang-ui gireogineun Hansu-ro doradeunda.",
+      en: "And the wild geese of the Three Rivers wheel homeward to the River Han.",
+      commentary: "The Three Rivers and the Han are waterways of central China, continuing the imagined Chinese geography; some lineages sing “Sanggang” (the Xiang River) here instead. In East Asian poetry the wild goose is the great emblem of homesickness and messages to distant family — bitterly apt for a girl leaving her father forever. The geese can return home; Sim Cheong cannot." },
+    { kr: "요량헌 남은 소래 어적(漁笛)이언마는,",
+      rom: "Yoryang-heon nameun sorae eojeok-ieonmaneun,",
+      en: "A clear strain lingers on the water — a fisherman's flute, surely —",
+      commentary: "“Yoryang-heon” describes a sound that is clear, far-carrying, and fading — heard across water at dusk. The fisherman's flute (eojeok) is a classical emblem of serene river life, which makes the sound feel painfully indifferent to the girl being carried to her death. This line sets up the famous Tang-poetry allusion completed in the next line." },
+    { kr: "곡종인불견(曲終人不見)에 수봉(數峰)만 푸르렀다.",
+      rom: "Gokjong-inbulgyeon-e subong-man pureureotda.",
+      en: "The tune ends, no player is seen — only a few peaks stand green against the sky.",
+      commentary: "A direct quotation from the Tang poet Qian Qi's famous examination poem: “The song is over, no one is seen; on the river a few peaks are blue.” The vanished flutist becomes an image of life's transience — music, like Sim Cheong herself, disappears while the indifferent mountains remain. Singers often let the melodic line thin and hang here, mirroring the fading flute." },
+    { kr: "애내성중만고수(欸乃聲中萬古愁)는 날로 두고 이름이라.",
+      rom: "Aenaeseongjung-mangosu-neun nallo dugo ireum-ira.",
+      en: "“In the creak of the oars, the sorrow of ten thousand ages” — those words were written for me.",
+      commentary: "“Aenae” is the rhythmic cry and creak of boatmen's oars, made famous in Liu Zongyuan's poetry; the quoted phrase means all of history's grief rides in that sound. This is the passage's emotional pivot: after lines of borrowed scenery, Sim Cheong suddenly claims the classical sorrow as her own — “that was said of me.” The music darkens accordingly, from stately grandeur toward personal lament." },
+    { kr: "장사(長沙)를 지내가니 가태부(賈太傅) 간 곳 없고, 멱라수(汨羅水)를 바라보니 굴삼려(屈三閭) 어복충혼(魚腹忠魂) 무양(無恙)도 허시던가.",
+      rom: "Jangsa-reul jinaegani Gataebu gan got eopgo, Myeongnasu-reul baraboni Gulsamnyeo eobokchunghon muyang-do heosideonga.",
+      en: "Passing Changsha, no trace remains of Tutor Jia; gazing on the Miluo's waters — loyal soul entombed in the bellies of fish, Qu Yuan, have you rested well?",
+      commentary: "Two exiles of Chinese history appear: Jia Yi (“Tutor Jia”), the brilliant Han statesman banished to Changsha, and Qu Yuan, the loyal Chu minister who drowned himself in the Miluo River in protest. Sim Cheong greets Qu Yuan's water-buried spirit almost as kin — she, too, will soon give her body to the water. The courteous question “have you fared well?” is devastating in its calm, foreshadowing Indangsu." }
+  ],
+  glossary: [
+    { term: "sorikkun", kr: "소리꾼", def: "The pansori singer, who alone narrates, sings, and acts every role in an epic story for hours, armed with only a fan. Great sorikkun train for decades to achieve the genre's prized husky, powerful vocal timbre." },
+    { term: "gosu", kr: "고수", def: "The drummer who accompanies the singer on the buk (barrel drum), keeping the rhythmic cycles and steering the performance's energy. A Korean saying ranks the drummer first and the singer second (“il gosu, i myeongchang”), because a good gosu makes the singer great." },
+    { term: "chuimsae", kr: "추임새", def: "Spontaneous calls of encouragement — “Eolssigu!”, “Jota!” (“That's it!”) — shouted by the drummer and audience between the singer's phrases. Far from being rude, chuimsae is expected: it completes the music and fuels the performer." },
+    { term: "jinyangjo", kr: "진양조", def: "The slowest pansori rhythmic cycle, 24 beats grouped in four sets of six, reserved for scenes of deep sorrow or solemn grandeur. Beompi jungnyu is a textbook jinyangjo piece: long, unhurried phrases evoke both the rolling sea and Sim Cheong's heavy heart." },
+    { term: "Indangsu", kr: "인당수", def: "The dreaded stretch of sea where sailors believed only the sacrifice of a maiden could calm the raging waters. It is Sim Cheong's destination in this passage — and the place where, after she leaps in, the Dragon King will save her." }
+  ]
+};
+
+const SHOWS = [
+  { title: "Saturday Gugak Concert", venue: "National Gugak Center, Umyeondang Hall",
+    when: "Every Saturday, 3 PM · 80 min · program changes weekly",
+    tags: ["court", "minyo", "samulnori", "pansori"],
+    price: "₩20,000–30,000",
+    book: "National Gugak Center English site, or Klook / Trazy / KKday / GetYourGuide / Seoul PASS.",
+    url: "https://www.gugak.go.kr/site/main/index001?menuid=001&lang=en",
+    blurb: "Korea's longest-running gugak showcase: court processional music, butterfly dances, and folk songs in one 80-minute sampler with English notes on screen — the ideal first taste. Arrive early for the free 2 PM English museum tour." },
+  { title: "GWANGDAE", venue: "National Jeongdong Theater",
+    when: "Seasonal runs (latest: Apr–May 2026) · check for the next run",
+    tags: ["samulnori", "pansori", "court", "fusion"],
+    price: "₩60,000",
+    book: "Official site jeongdong.or.kr, or Klook / Seoul PASS when a run is announced.",
+    url: "https://www.jeongdong.or.kr/",
+    blurb: "An 80-minute, English-subtitled whirlwind of traveling-performer arts — pansori, samulnori drumming, court dance, and plate-spinning acrobatics — that never lets the energy drop. Ages 5 and up." },
+  { title: "Yeowoorak Festival", venue: "National Theater of Korea, Namsan",
+    when: "July 3–25, 2026 · evenings 7:30 PM, weekend matinees 3 PM · every July",
+    tags: ["fusion", "contemporary-gugak", "crossover", "minyo"],
+    price: "₩35,000 · 10% off for foreigners",
+    book: "ntok.go.kr (English available) or +82-2-2280-4114.",
+    url: "https://www.ntok.go.kr/en/",
+    blurb: "The National Theater's trendsetting summer festival, where gugak masters collide with jazz, electronica, and indie acts — this is where Korean traditional music sounds newest." },
+  { title: "Korea House Traditional Performance", venue: "Korea House, Chungmuro",
+    when: "Evening shows most days, from ~6:30 PM · check calendar",
+    tags: ["court", "minyo", "samulnori"],
+    price: "~₩50,000 show-only · dinner packages vary",
+    book: "kh.or.kr, or Trazy / Viator (optional hotel transfer).",
+    url: "https://www.kh.or.kr/",
+    blurb: "Royal court cuisine in a hanok, then an hour of drum dances, salpuri, pansori, and mask dance with English and Japanese explanations — dinner theater, Joseon style, staged for over 40 years." },
+  { title: "Jinyeon — Insadong Court Music Concert", venue: "Jinyeon Hall, Insadong",
+    when: "Daily-ish: 11 AM / 2 PM / 4 PM, six days a week · check listings",
+    tags: ["court", "haegeum", "gayageum", "minyo"],
+    price: "₩65,000",
+    book: "Klook, GetYourGuide, or Trazy — built for international guests.",
+    url: "https://www.klook.com/",
+    blurb: "Korea's first privately run permanent gugak venue: a salon-style Joseon court music concert for 20 or fewer guests — you sit close enough to feel the haegeum's bow." }
+];
+
+const VENUES = [
+  { name: "National Gugak Center", area: "Seocho, next to Seoul Arts Center",
+    what: "Korea's flagship home of traditional music — court, folk, dance, and contemporary gugak troupes perform year-round.",
+    tip: "English subtitles at the Saturday concert, free English museum tour Saturdays 2 PM, full English website. Line 3 to Nambu Bus Terminal, Exit 5.",
+    url: "https://www.gugak.go.kr/site/main/index001?menuid=001&lang=en" },
+  { name: "Seoul Namsan Gugakdang", area: "Namsangol Hanok Village",
+    what: "An intimate 330-seat hall built for gugak's pure, unamplified natural sound — the only venue of its kind in Korea.",
+    tip: "English program pages at sgtt.kr/program_en. Chungmuro Station, Exit 3/4. Not every show has subtitles — music-centered programs are the safest pick.",
+    url: "https://sgtt.kr/program_en/" },
+  { name: "National Jeongdong Theater", area: "Jeong-dong, by Deoksugung Palace",
+    what: "Polished seasonal productions that package pansori, samulnori, and court dance into theatrical shows built for modern audiences.",
+    tip: "Traditional productions carry English subtitles. Short walk from City Hall Station along the Deoksugung stone-wall road.",
+    url: "https://www.jeongdong.or.kr/" },
+  { name: "Korea House", area: "Pil-dong, near Chungmuro",
+    what: "A hanok compound serving royal court cuisine dinners paired with an hour-long music and dance show.",
+    tip: "Built to host international guests — explanations in English and Japanese. Closure days vary; check the booking calendar.",
+    url: "https://www.kh.or.kr/" },
+  { name: "Seoul Donhwamun Traditional Theater", area: "Facing Changdeokgung Palace",
+    what: "A chamber-scale gugak theater known for its spring solo-instrumental (sanjo) season and meditative contemporary-traditional programs.",
+    tip: "400 m from Anguk Station Exit 4 — pairs perfectly with a palace visit. Closed Mondays. English program at sgtt.kr/program_en.",
+    url: "https://sgtt.kr/program_en/" }
+];
+
+const CLASSES = [
+  { prog: "e-Gugak Academy — free online courses in English", prov: "National Gugak Center",
+    fmt: "Self-paced video courses: “Easiest Haegeum Class in the World”, “Understanding Gugak”, minyo singing and more. Free.",
+    aud: "K-culture fans anywhere — the perfect pre-trip primer.",
+    url: "https://academy.gugak.go.kr/open/foreigner/main.do" },
+  { prog: "Gayageum One-Day Class in Bukchon", prov: "Beautiful Gayageum studio · via KoreaTravelEasy",
+    fmt: "80-minute workshop (~USD 95) incl. hanbok wearing and photos. Weekdays 9 AM / 12:30 PM / 3 PM, max 8 people, book 3+ days ahead.",
+    aud: "Tourists age 10+ — no Korean or musical background needed.",
+    url: "https://www.koreatraveleasy.com/product/korean-traditional-instrument-gayageum-class-in-bukchon-seoul/" },
+  { prog: "K-Culture Vibes: Play Gayageum in Hanbok", prov: "Airbnb Experiences, Bukchon",
+    fmt: "80-minute small-group workshop (max 8, ages 7+): learn Arirang on the gayageum, hanbok, photos, keepsake certificate.",
+    aud: "Tourists and K-culture fans — rated 5.0 by past guests.",
+    url: "https://www.airbnb.com/experiences/6151098" },
+  { prog: "International Gugak Workshop", prov: "National Gugak Center",
+    fmt: "Annual ~2-week intensive in Seoul (theory + hands-on gayageum, geomungo, piri, janggu). Applications open each December.",
+    aud: "Overseas musicians and serious practitioners — 2026 hosted 15 people from 8 countries.",
+    url: "https://www.gugak.go.kr/site/program/board/basicboard/list?boardid=44976&boardtypeid=58&menuid=001005006001&lang=en" }
+];
+
+const TASTES = [
+  { id: "story",   label: "Epic storytelling",     tags: ["pansori"] },
+  { id: "moody",   label: "Cinematic & moody",     tags: ["haegeum", "daegeum", "court"] },
+  { id: "strings", label: "Silky strings",         tags: ["gayageum", "haegeum"] },
+  { id: "folk",    label: "Sing-along folk",       tags: ["minyo"] },
+  { id: "drums",   label: "Drums & adrenaline",    tags: ["samulnori"] },
+  { id: "royal",   label: "Royal & majestic",      tags: ["court"] },
+  { id: "modern",  label: "Genre-bending modern",  tags: ["fusion", "contemporary-gugak", "crossover"] }
+];
+
+/* ================= State ================= */
+const state = { tastes: new Set(["story", "moody"]), attended: 2 };
+
+/* ================= Helpers ================= */
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+function selectedTags() {
+  const s = new Set();
+  TASTES.forEach(t => { if (state.tastes.has(t.id)) t.tags.forEach(x => s.add(x)); });
+  return s;
+}
+function matchInfo(show) {
+  const sel = selectedTags();
+  if (sel.size === 0) return { pct: null, matched: 0 };
+  const matched = show.tags.filter(t => sel.has(t)).length;
+  if (matched === 0) return { pct: null, matched: 0 };
+  const pct = Math.min(98, Math.round(55 + 45 * matched / show.tags.length));
+  return { pct, matched };
+}
+function toast(msg) {
+  const el = $("#toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove("show"), 2600);
+}
+
+/* ================= Tabs ================= */
+function switchTab(id) {
+  $$("section[data-panel]").forEach(s => s.classList.toggle("active", s.dataset.panel === id));
+  $$(".tab-btn").forEach(b => b.setAttribute("aria-current", b.dataset.tab === id ? "true" : "false"));
+  window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+}
+$$(".tab-btn").forEach(b => b.addEventListener("click", () => switchTab(b.dataset.tab)));
+document.addEventListener("click", (e) => {
+  const go = e.target.closest("[data-goto]");
+  if (go) switchTab(go.dataset.goto);
+});
+
+/* ================= Taste chips ================= */
+function renderTastes() {
+  $("#tasteChips").innerHTML = TASTES.map(t =>
+    `<button class="chip" data-taste="${t.id}" aria-pressed="${state.tastes.has(t.id)}">${t.label}</button>`
+  ).join("");
+}
+$("#tasteChips").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-taste]");
+  if (!btn) return;
+  const id = btn.dataset.taste;
+  if (state.tastes.has(id)) state.tastes.delete(id); else state.tastes.add(id);
+  renderTastes(); renderPick(); renderShows();
+});
+
+/* ================= Home: temperature + pick ================= */
+function renderTemp() {
+  const temp = (36.5 + state.attended * 0.9).toFixed(1);
+  $("#tempVal").textContent = temp + "°";
+  requestAnimationFrame(() => { $("#tempFill").style.width = Math.min(100, (state.attended / 5) * 100) + "%"; });
+}
+function rankedShows() {
+  return SHOWS.map(s => ({ s, m: matchInfo(s) }))
+    .sort((a, b) => (b.m.matched - a.m.matched) || ((b.m.pct || 0) - (a.m.pct || 0)));
+}
+function renderPick() {
+  const top = rankedShows()[0];
+  const { s, m } = top;
+  $("#pickCard").innerHTML = `
+    ${m.pct ? `<span class="match-badge">${m.pct}% your vibe</span>` : `<span class="match-badge neutral">Editor's pick</span>`}
+    <h3>${s.title}</h3>
+    <p class="venue">${s.venue} · ${s.price}</p>
+    <p class="blurb">${s.blurb}</p>
+    <div class="btn-row">
+      <button class="btn small" data-goto="shows">See all shows</button>
+      <a class="btn small ghost" href="${s.url}" target="_blank" rel="noopener">Booking info ↗</a>
+    </div>`;
+}
+
+/* ================= Explore ================= */
+function renderGenres() {
+  $("#genreGrid").innerHTML = GENRES.map(g => `
+    <button class="genre-card" style="--gc: var(--c-${g.id})" data-genre="${g.id}">
+      <span class="big" aria-hidden="true">${g.ch}</span>
+      <b>${g.name} <span style="color:var(--faint);font-weight:400;font-size:12px;">${g.koreanName}</span></b>
+      <small>${g.tagline}</small>
+    </button>`).join("");
+}
+$("#genreGrid").addEventListener("click", (e) => {
+  const card = e.target.closest("[data-genre]");
+  if (card) openGenre(card.dataset.genre);
+});
+function relatedShows(g) {
+  return SHOWS.filter(s => s.tags.some(t => g.tags.includes(t)));
+}
+function openGenre(id) {
+  const g = GENRES.find(x => x.id === id);
+  const rel = relatedShows(g);
+  $("#genreSheet").innerHTML = `
+    <div class="grab" aria-hidden="true"></div>
+    <button class="sheet-close" data-close aria-label="Close">✕</button>
+    <div style="--gc: var(--c-${g.id})">
+      <div class="g-big" aria-hidden="true">${g.koreanName}</div>
+      <h2 class="g-name">${g.name}</h2>
+      <p class="g-tag">${g.tagline}</p>
+      <p class="g-desc">${g.description}</p>
+      <div class="callout"><b>Listen for</b>${g.listenFor}</div>
+      <div class="callout"><b>Wait, really?</b>${g.funFact}</div>
+      <p class="eyebrow">Hear it live · ${rel.length} show${rel.length === 1 ? "" : "s"}</p>
+      <ul class="rel-list">
+        ${rel.map(s => `<li><span>${s.title}</span><span class="rl-v">${s.price}</span></li>`).join("")}
+      </ul>
+      <div class="btn-row">
+        <button class="btn small" data-close data-goto="shows">Browse shows</button>
+        <button class="btn small ghost" data-close data-goto="learn">Learn to play it</button>
+      </div>
+    </div>`;
+  openSheet("#genreSheet");
+}
+
+/* ================= Lyrics ================= */
+function renderLyrics() {
+  $("#passageName").textContent = LYRICS.passageName;
+  $("#passageContext").textContent = LYRICS.context;
+  $("#glossRow").innerHTML = LYRICS.glossary.map((t, i) =>
+    `<button class="gloss-chip" data-term="${i}">${t.term} · ${t.kr}</button>`).join("");
+  $("#lineList").innerHTML = LYRICS.lines.map((l, i) => `
+    <div class="line-item" role="button" tabindex="0" data-line="${i}" aria-expanded="false">
+      <span class="num">LINE ${String(i + 1).padStart(2, "0")} / 08</span>
+      <div class="kr">${l.kr}</div>
+      <div class="rom">${l.rom}</div>
+      <div class="en">${l.en}</div>
+      <div class="hint">Tap for the story behind this line</div>
+      <div class="commentary">${l.commentary}</div>
+    </div>`).join("");
+}
+function toggleLine(li) {
+  const open = li.getAttribute("aria-expanded") === "true";
+  li.setAttribute("aria-expanded", open ? "false" : "true");
+  li.querySelector(".hint").textContent = open ? "Tap for the story behind this line" : "Tap to fold";
+}
+$("#lineList").addEventListener("click", (e) => {
+  const li = e.target.closest("[data-line]");
+  if (li) toggleLine(li);
+});
+$("#lineList").addEventListener("keydown", (e) => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const li = e.target.closest("[data-line]");
+  if (li) { e.preventDefault(); toggleLine(li); }
+});
+$("#glossRow").addEventListener("click", (e) => {
+  const chip = e.target.closest("[data-term]");
+  if (!chip) return;
+  const t = LYRICS.glossary[Number(chip.dataset.term)];
+  $("#termSheet").innerHTML = `
+    <div class="grab" aria-hidden="true"></div>
+    <button class="sheet-close" data-close aria-label="Close">✕</button>
+    <div class="term-kr">${t.kr}</div>
+    <div class="term-rom">${t.term}</div>
+    <p class="term-def">${t.def}</p>`;
+  openSheet("#termSheet");
+});
+document.addEventListener("click", (e) => {
+  const v = e.target.closest("[data-vote]");
+  if (v) toast(`Voted: ${v.dataset.vote}. Thanks — this steers the next passage.`);
+});
+
+/* ================= Shows ================= */
+function renderShows() {
+  const ranked = rankedShows();
+  $("#showsSub").textContent = state.tastes.size
+    ? "Ranked for your picks — every show is foreigner-friendly."
+    : "Pick your vibe on Home to get personal rankings.";
+  const noPicks = state.tastes.size === 0;
+  $("#showList").innerHTML = ranked.map(({ s, m }) => `
+    <div class="card show-card">
+      ${m.pct ? `<span class="match-badge">${m.pct}% your vibe</span>` : `<span class="match-badge neutral">${noPicks ? "Popular with first-timers" : "Outside your picks — try it anyway"}</span>`}
+      <h3>${s.title}</h3>
+      <p class="venue">${s.venue}</p>
+      <div class="tag-row">${s.tags.map(t => {
+        const g = GENRES.find(x => x.id === t);
+        return `<span class="tag" ${g ? `style="--tc: var(--c-${g.id})"` : ""}>${t.replace("contemporary-gugak", "contemporary")}</span>`;
+      }).join("")}</div>
+      <p class="blurb">${s.blurb}</p>
+      <dl class="fact-grid">
+        <dt>When</dt><dd>${s.when}</dd>
+        <dt>Price</dt><dd><b>${s.price}</b></dd>
+        <dt>Book</dt><dd>${s.book}</dd>
+      </dl>
+      <div class="btn-row"><a class="btn small ghost" href="${s.url}" target="_blank" rel="noopener">Booking info ↗</a></div>
+    </div>`).join("");
+}
+function renderVenues() {
+  $("#venueList").innerHTML = VENUES.map(v => `
+    <details class="venue-item">
+      <summary>${v.name} <small>${v.area}</small></summary>
+      <p class="v-body">${v.what}</p>
+      <div class="v-tip"><b>First-timer tip</b>${v.tip} <a href="${v.url}" target="_blank" rel="noopener">Website ↗</a></div>
+    </details>`).join("");
+}
+
+/* ================= Learn ================= */
+function renderClasses() {
+  $("#classList").innerHTML = CLASSES.map(c => `
+    <div class="card class-card">
+      <b class="prog">${c.prog}</b>
+      <p class="prov">${c.prov}</p>
+      <p class="fmt">${c.fmt}</p>
+      <p class="aud">${c.aud}</p>
+      <div class="btn-row"><a class="btn small ghost" href="${c.url}" target="_blank" rel="noopener">Details ↗</a></div>
+    </div>`).join("");
+}
+$("#matchBtn").addEventListener("click", () => {
+  const inst = $("#instSelect").value.split(" — ")[0];
+  toast(inst === "Not sure yet"
+    ? "Request sent (prototype): we'd help you pick an instrument first, then intro a teacher."
+    : `Request sent (prototype): we'd email you a ${inst} teacher intro within 48h.`);
+});
+
+/* ================= Sheets ================= */
+function openSheet(sel) {
+  $("#backdrop").classList.add("open");
+  $(sel).classList.add("open");
+  document.body.style.overflow = "hidden";
+  $(sel).querySelector(".sheet-close").focus();
+}
+function closeSheets() {
+  $("#backdrop").classList.remove("open");
+  $$(".sheet").forEach(s => s.classList.remove("open"));
+  document.body.style.overflow = "";
+}
+$("#backdrop").addEventListener("click", closeSheets);
+document.addEventListener("click", (e) => { if (e.target.closest("[data-close]")) closeSheets(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheets(); });
+
+/* ================= Splash ================= */
+$("#guestBtn").addEventListener("click", () => {
+  $("#splash").classList.add("gone");
+  toast("Welcome in. Pick what pulls you in — recommendations follow.");
+});
+$("#emailBtn").addEventListener("click", () => toast("Accounts arrive after the pilot — guest mode has everything for now."));
+
+/* ================= Init ================= */
+renderTastes();
+renderTemp();
+renderPick();
+renderGenres();
+renderLyrics();
+renderShows();
+renderVenues();
+renderClasses();
+</script>
+</body>
+</html>
